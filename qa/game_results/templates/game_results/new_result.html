@@ -1,0 +1,10 @@
+{% extends "game_results/base.html" %}
+{% block content %}
+    <p><a href="{% url 'game_results:game' game.id %}">{{ game }}</a></p>
+    <p>Add a new result:</p>
+    <form action="{% url 'game_results:new_result' game.id %}" method='post'>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button name="submit">add result</button>
+    </form>
+{% endblock content %}

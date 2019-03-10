@@ -1,0 +1,23 @@
+{% extends 'game_results/base.html' %}
+{% block content %}
+    <p>Game:{{ game }}</p>
+    <p>Result:</p>
+    <p>
+     <a href="{% url 'game_results:new_result' game.id %}">add new result </a>
+    </p>
+    <ul>
+    {% for result in results %}
+    <li>
+        <p>{{ result.date_added|date:'M d, Y H:i' }}</p>
+        <p>{{ result.text|linebreaks }}</p>
+        <P>
+            <a href="{% url 'game_results:edit_result' result.id %}">edit result</a>
+        </P>
+    </li>
+    {% empty %}
+        <li>
+            There are no results for this game yet.
+        </li>
+    {% endfor %}
+    </ul>
+{% endblock content %}
